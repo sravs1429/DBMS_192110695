@@ -1,0 +1,136 @@
+mysql> select * from teacher;
++------+---------+---------+------+--------+
+| id   | name    | course  | age  | salary |
++------+---------+---------+------+--------+
+|  101 | bharath | dbms    |   35 |  78001 |
+|  102 | ashok   | statics |   45 |  80001 |
+|  103 | manoj   | physics |   23 |  87001 |
+|  104 | aswini  | maths   |   56 |  67001 |
++------+---------+---------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select @@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from teacher;
++------+---------+---------+------+--------+
+| id   | name    | course  | age  | salary |
++------+---------+---------+------+--------+
+|  101 | bharath | dbms    |   35 |  78001 |
+|  102 | ashok   | statics |   45 |  80001 |
+|  103 | manoj   | physics |   23 |  87001 |
+|  104 | aswini  | maths   |   56 |  67001 |
+|  105 | naveen  | biology |   36 |  76000 |
++------+---------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            0 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> insert into teacher values(106,'hema','os',45,56000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from teacher;
++------+---------+---------+------+--------+
+| id   | name    | course  | age  | salary |
++------+---------+---------+------+--------+
+|  101 | bharath | dbms    |   35 |  78001 |
+|  102 | ashok   | statics |   45 |  80001 |
+|  103 | manoj   | physics |   23 |  87001 |
+|  104 | aswini  | maths   |   56 |  67001 |
+|  105 | naveen  | biology |   36 |  76000 |
+|  106 | hema    | os      |   45 |  56000 |
++------+---------+---------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> delete from teacher where id=106;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from teacher;
++------+---------+---------+------+--------+
+| id   | name    | course  | age  | salary |
++------+---------+---------+------+--------+
+|  101 | bharath | dbms    |   35 |  78001 |
+|  102 | ashok   | statics |   45 |  80001 |
+|  103 | manoj   | physics |   23 |  87001 |
+|  104 | aswini  | maths   |   56 |  67001 |
+|  105 | naveen  | biology |   36 |  76000 |
++------+---------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from teacher;
++------+---------+---------+------+--------+
+| id   | name    | course  | age  | salary |
++------+---------+---------+------+--------+
+|  101 | bharath | dbms    |   35 |  78001 |
+|  102 | ashok   | statics |   45 |  80001 |
+|  103 | manoj   | physics |   23 |  87001 |
+|  104 | aswini  | maths   |   56 |  67001 |
+|  105 | naveen  | biology |   36 |  76000 |
++------+---------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            0 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> delete from teacher where id=105;
+Query OK, 1 row affected (0.00 sec)
+mysql> select * from teacher;
++------+---------+---------+------+--------+
+| id   | name    | course  | age  | salary |
++------+---------+---------+------+--------+
+|  101 | bharath | dbms    |   35 |  78001 |
+|  102 | ashok   | statics |   45 |  80001 |
+|  103 | manoj   | physics |   23 |  87001 |
+|  104 | aswini  | maths   |   56 |  67001 |
++------+---------+---------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from teacher;
++------+---------+---------+------+--------+
+| id   | name    | course  | age  | salary |
++------+---------+---------+------+--------+
+|  101 | bharath | dbms    |   35 |  78001 |
+|  102 | ashok   | statics |   45 |  80001 |
+|  103 | manoj   | physics |   23 |  87001 |
+|  104 | aswini  | maths   |   56 |  67001 |
+|  105 | naveen  | biology |   36 |  76000 |
++------+---------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> savepoint a;
+Query OK, 0 rows affected (0.00 sec)
+mysql> select @@autocommit;
++--------------+
+| @@autocommit |
++--------------+
+|            0 |
++--------------+
+1 row in set (0.00 sec)
