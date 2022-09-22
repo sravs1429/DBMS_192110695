@@ -1,0 +1,52 @@
+mysql> select * from employee;
++------+-------+-------------+-------------+------+-------------+
+| sno  | name  | designation | branch      | age  | phonenumber |
++------+-------+-------------+-------------+------+-------------+
+|    1 | ram   | assistant   | chennai     |   35 |        NULL |
+|    2 | shyam | supervisor  | rameshwaram | NULL |        NULL |
+|    3 | hari  | assistant   | trichy      | NULL |        NULL |
++------+-------+-------------+-------------+------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update employee set age=40 where name='shyam';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+-------+-------------+-------------+------+-------------+
+| sno  | name  | designation | branch      | age  | phonenumber |
++------+-------+-------------+-------------+------+-------------+
+|    1 | ram   | assistant   | chennai     |   35 |        NULL |
+|    2 | shyam | supervisor  | rameshwaram |   40 |        NULL |
+|    3 | hari  | assistant   | trichy      | NULL |        NULL |
++------+-------+-------------+-------------+------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update employee set phonenumber=1234567890 where name='ram';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++------+-------+-------------+-------------+------+-------------+
+| sno  | name  | designation | branch      | age  | phonenumber |
++------+-------+-------------+-------------+------+-------------+
+|    1 | ram   | assistant   | chennai     |   35 |  1234567890 |
+|    2 | shyam | supervisor  | rameshwaram |   40 |        NULL |
+|    3 | hari  | assistant   | trichy      | NULL |        NULL |
++------+-------+-------------+-------------+------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee modify column age (40);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(40)' at line 1
+mysql> alter table employee modify column age(40);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(40)' at line 1
+mysql> delete from employee where age;
+Query OK, 2 rows affected (0.00 sec)
+
+mysql> select * from employee;
++------+------+-------------+--------+------+-------------+
+| sno  | name | designation | branch | age  | phonenumber |
++------+------+-------------+--------+------+-------------+
+|    3 | hari | assistant   | trichy | NULL |        NULL |
++------+------+-------------+--------+------+-------------+
+1 row in set (0.00 sec)
