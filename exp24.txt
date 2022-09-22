@@ -1,0 +1,41 @@
+mysql> create table carrent(carname char(30),carcost int(44),carbrand char(50),carwedight int(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc carrent;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| carname    | char(30) | YES  |     | NULL    |       |
+| carcost    | int(44)  | YES  |     | NULL    |       |
+| carbrand   | char(50) | YES  |     | NULL    |       |
+| carwedight | int(20)  | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> create a customer(customername char(55),customerid int(20),customeraddress char(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'a customer(customername char(55),customerid int(20),customeraddress char(50))' at line 1
+mysql> create table customer(customername char(55),customerid int(20),customeraddress char(50));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc customer;
++-----------------+----------+------+-----+---------+-------+
+| Field           | Type     | Null | Key | Default | Extra |
++-----------------+----------+------+-----+---------+-------+
+| customername    | char(55) | YES  |     | NULL    |       |
+| customerid      | int(20)  | YES  |     | NULL    |       |
+| customeraddress | char(50) | YES  |     | NULL    |       |
++-----------------+----------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> insert into customer values('rani',2333,'kadapa'),('raju',5656,'jamalamadugu');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select*from customer;
++--------------+------------+-----------------+
+| customername | customerid | customeraddress |
++--------------+------------+-----------------+
+| rani         |       2333 | kadapa          |
+| raju         |       5656 | jamalamadugu    |
++--------------+------------+-----------------+
+2 rows in set (0.00 sec)
