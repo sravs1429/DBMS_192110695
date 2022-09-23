@@ -1,0 +1,75 @@
+mysql> use test;
+Database changed
+mysql> create table marks(nameofthestudent varchar(10), subject char(10), marks int(10), grade char(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc marks;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| nameofthestudent | varchar(10) | YES  |     | NULL    |       |
+| subject          | char(10)    | YES  |     | NULL    |       |
+| marks            | int(10)     | YES  |     | NULL    |       |
+| grade            | char(10)    | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into marks values('keerthana','dbms',98,'A'),('sravanthi','english',92,'A'),('bhavishya','chemistry',82,'B'),('koushik','english',74,'c'),('ram','cn',76,'c');
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from marks;
++------------------+-----------+-------+-------+
+| nameofthestudent | subject   | marks | grade |
++------------------+-----------+-------+-------+
+| keerthana        | dbms      |    98 | A     |
+| sravanthi        | english   |    92 | A     |
+| bhavishya        | chemistry |    82 | B     |
+| koushik          | english   |    74 | c     |
+| ram              | cn        |    76 | c     |
++------------------+-----------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update marks set subject="physics" where nameofthestudent="physics";
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from marks;
++------------------+-----------+-------+-------+
+| nameofthestudent | subject   | marks | grade |
++------------------+-----------+-------+-------+
+| keerthana        | dbms      |    98 | A     |
+| sravanthi        | english   |    92 | A     |
+| bhavishya        | chemistry |    82 | B     |
+| koushik          | english   |    74 | c     |
+| ram              | cn        |    76 | c     |
++------------------+-----------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select nameofthestudent,marks
+    -> if(marks>80,'goodmarks','avg marks')
+    -> from marks;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'if(marks>80,'goodmarks','avg marks')
+from marks' at line 2
+mysql> select nameofthestudent,marks
+    ->     -> if(marks>80,'goodmarks','avg marks')
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '> if(marks>80,'goodmarks','avg marks')' at line 2
+mysql> select nameofthestudent,marks
+    -> if(marks > 80,'good marks','avg marks')
+    -> from marks;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'if(marks > 80,'good marks','avg marks')
+from marks' at line 2
+mysql>  select nameofthestudent,marks,
+    -> if(marks > 80,'good marks','avg marks')
+    -> from marks;
++------------------+-------+-----------------------------------------+
+| nameofthestudent | marks | if(marks > 80,'good marks','avg marks') |
++------------------+-------+-----------------------------------------+
+| keerthana        |    98 | good marks                              |
+| sravanthi        |    92 | good marks                              |
+| bhavishya        |    82 | good marks                              |
+| koushik          |    74 | avg marks                               |
+| ram              |    76 | avg marks                               |
++------------------+-------+-----------------------------------------+
+5 rows in set (0.02 sec)
